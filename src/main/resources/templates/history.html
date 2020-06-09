@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Temperature History In Vilnius</title>
+</head>
+<body>
+<div style="width:80%; margin:auto; text-align:center; font-size:xxx-large; margin-top:50px;">Vilnius Temperature History</div>
+<th:block th:include="/choise"></th:block>
+<div th:if="${weather != null}">
+<div style="width: 80%; margin:auto; text-align: center; margin-top: 10px;" th:text="@{'Showing temperature history for: ' + ${weather.get(0).day}}"></div>
+	<div style="width: 100%; height: 500px; margin: auto;" id="chart_div"></div>
+</div>
+<div style="width: 80%; margin:auto; text-align: center; margin-top: 10px;" th:if="${weather == null}">
+We are very sorry, but we can not find any information about this date in our database. Please, try selecting a more recent date.
+</div>
+</body>
+
+  <script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script th:inline="javascript">
+google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawBasic);
+
+
+
+function drawBasic() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'X');
+      data.addColumn('number', 'Temperature');
+      data.addRows([
+    	  [# th:each="day : ${weather}"]
+    	[ [[${#temporals.format(day.weatherTime,'HH:mm')}]] , [[${day.temperature}]] ], 
+   
+    	 [/]
+
+      ]);
+
+      
+      var options = {
+        hAxis: {
+          title: 'Time'
+          
+        },
+        vAxis: {
+          title: 'Temperature'
+        },
+        legend: {position: 'none'}
+
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
+
+</script>
+</html>

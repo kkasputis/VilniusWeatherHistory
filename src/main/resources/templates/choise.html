@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<section>
+
+				<fieldset style="width:80%; margin: auto;">
+
+					<legend>Choose a date to see air temperature history in Vilnius</legend>
+
+	<div class="inputfield">
+		<div class="popup">
+			<input class="dateinput" type='date' id="dateSelect"
+				onclick="showBallon();"> <span class="popuptext"
+				id="datePopup" onclick="showBallon();">Input Date</span>
+		</div>
+		
+
+
+		<div>
+			<button class="skaiciuok" id="skaiciuok"
+				onclick="skaiciuokValiutas();">Show Temperatures</button>
+		</div>
+	
+	</div>
+	</fieldset>
+</section>
+
+<script>
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth() + 1; 
+	var yyyy = today.getFullYear();
+	if (dd < 10) {
+		dd = '0' + dd
+	}
+	if (mm < 10) {
+		mm = '0' + mm
+	}
+
+	today = yyyy + '-' + mm + '-' + dd;
+	document.getElementById("dateSelect").setAttribute("max", today)
+
+
+	function skaiciuokValiutas() {
+		if ((document.getElementById('dateSelect').value !== "")) {
+			window.location = "/temperature?date="
+					+ document.getElementById('dateSelect').value;
+			
+			
+
+		}
+		if (document.getElementById('dateSelect').value === "") {
+			document.getElementById("datePopup").classList.toggle("show");
+
+		}
+		
+
+	}
+	function showBallon() {
+
+		if (document.getElementById("datePopup").classList.contains("show")) {
+			document.getElementById("datePopup").classList.toggle("show");
+		}
+	}
+
+	
+</script>
+ <script src="/bootstrap-select.js"></script> 
+<style>
+.inputfield {
+margin-top: 15px;
+margin-bottom: 20px;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+align-items: center;
+line-height: 30px;
+}
+.dateinput {
+	border: 1px solid #c4c4c4;
+	border-radius: 5px;
+	background-color: #fff;
+	padding: 3px 5px;
+	box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+	width: 190px;
+
+}
+
+.skaiciuok {
+	background-color: #8E8E8E;
+	border: none;
+	color: white;
+	padding: 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 12px;
+}
+
+.skaiciuok:hover {
+	background-color: #403E3E;
+}
+
+/* Popup container - can be anything you want */
+.popup {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+	visibility: hidden;
+	width: 160px;
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 8px 0;
+	position: absolute;
+	z-index: 1;
+	bottom: 125%;
+	left: 50%;
+	margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+	visibility: visible;
+	-webkit-animation: fadeIn 1s;
+	animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+from { opacity:0; }
+to { opacity: 1; }
+}
+@keyframes fadeIn {
+from { opacity:0; }
+to { opacity: 1; }
+}
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 300px) and (max-device-width: 1024px)  {
+.dateinput {
+	height: 40px;
+	width: 300px;
+	margin: 5px;
+	font-size: 20px;
+}
+.skaiciuok {
+margin-top: 30px;
+    padding-left: 90px;
+    padding-right: 90px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-size: 30px;
+}
+ 
+
+}
+</style>

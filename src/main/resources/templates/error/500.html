@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Server Error</title>
+</head>
+<body>
+<div style="width:80%; margin:auto; text-align:center; font-size:xxx-large; margin-top:50px;">Vilnius Temperature History</div>
+<div style="width: 80%; margin:auto; text-align: center; margin-top: 10px; font-size:large;">
+Oh no...<span style="color:red">Internal server error</span>. I failed! I will try and fix the problem right away! I really want to get a job at IBM! :) </div>
+<th:block th:include="/choise"></th:block>
+<div th:text="@{'Error: ' + ${error}}"></div>
+</body>
+</html>
