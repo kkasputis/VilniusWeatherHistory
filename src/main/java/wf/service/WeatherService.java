@@ -82,7 +82,7 @@ public class WeatherService {
 	}
 
 	public void saveWeatherHour() throws JsonParseException, JsonMappingException, IOException {
-		DateTimeFormatter format1 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+		DateTimeFormatter format1 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'.000Z'");
 		DateTimeFormatter format2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		Instant now = Instant.now() ;
 		ZoneId z = ZoneId.of( "Europe/London" ) ;  
