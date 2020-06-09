@@ -88,7 +88,7 @@ public class WeatherService {
 		ZoneId z = ZoneId.of( "Europe/London" ) ;  
 		ZonedDateTime dateToGet = now.atZone( z ) ;
 		URL url = new URL("https://api.climacell.co/v3/weather/historical/climacell?start_time="
-				+ dateToGet.minusHours(2).format(format1) + "&end_time=now" 
+				+ dateToGet.minusHours(2).format(format1) + "&end_time=" + dateToGet.minusHours(1).format(format1)
 				+ "&lat=54.6872&lon=25.2797&timestep=30&unit_system=si&fields=temp&apikey=0DrZNIIpuH0Uc0w2w0NmndYP2CWZWgy2");
 		URLConnection yc = url.openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
