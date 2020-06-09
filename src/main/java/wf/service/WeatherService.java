@@ -61,7 +61,7 @@ public class WeatherService {
 		}
 	}
 
-//	@PostConstruct
+	@PostConstruct
 	@Async
 	public void LastMonthInfo() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
