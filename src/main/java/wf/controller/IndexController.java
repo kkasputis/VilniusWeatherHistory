@@ -28,6 +28,7 @@ public class IndexController {
 	public String temperatureHistory(@RequestParam("date") String date, Model model) {
 		List<Weather> weather = weatherRepository.findByDay(date).orElse(null);
 		model.addAttribute("weather", weatherService.sortWeather(weather));
+		model.addAttribute("date", date);
 		return "history";
 
 	}
